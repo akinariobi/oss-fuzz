@@ -49,6 +49,9 @@ ENV FUZZING_ENGINE="libfuzzer"
 # Path to fuzzing engine library.
 ENV LIB_FUZZING_ENGINE="/usr/lib/libFuzzingEngine.a"
 
+# Flags used for linking a fuzz target againt the fuzzing engine.
+ENV FUZZING_ENGINE_CXXFLAGS="-lFuzzingEngine"
+
 # TODO: remove after tpm2 catchup.
 ENV FUZZER_LDFLAGS ""
 

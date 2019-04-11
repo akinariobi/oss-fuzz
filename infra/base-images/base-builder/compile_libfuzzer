@@ -25,4 +25,7 @@ $CXX $CXXFLAGS -std=c++11 -O2 -fPIC $SANITIZER_FLAGS -fno-sanitize=vptr \
 ar r $LIB_FUZZING_ENGINE $WORK/libfuzzer/*.o
 popd > /dev/null
 rm -rf $WORK/libfuzzer
+
+# Projects should use -fsanitize=fuzzer if posible.
+export FUZZING_ENGINE_CXXFLAGS="-fsanitize=fuzzer"
 echo " done."
