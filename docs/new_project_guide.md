@@ -108,7 +108,7 @@ sanitizers:
   - address
   - memory
   - undefined
-help_url: "{help_url}"  
+help_url: "{help_url}"
 experimental: True
 ```
 ## Dockerfile
@@ -175,7 +175,7 @@ When build.sh script is executed, the following locations are available within t
 | `/out/` | `$OUT`         | Directory to store build artifacts (fuzz targets, dictionaries, options files, seed corpus archives). |
 | `/src/` | `$SRC`         | Directory to checkout source files |
 | `/work/`| `$WORK`        | Directory for storing intermediate files |
-| `/usr/lib/libFuzzingEngine.a` | `$LIB_FUZZING_ENGINE` | Location of prebuilt fuzzing engine library (e.g. libFuzzer ) that needs to be linked with all fuzz targets (`-lFuzzingEngine`).
+| `/usr/lib/libFuzzingEngine.a` | `$LIB_FUZZING_ENGINE` | Location of prebuilt fuzzing engine library (e.g. libFuzzer ) that needs to be linked with all fuzz targets (`-lFuzzingEngine`). *DEPRECATED* These may be removed in a future version of OSS-Fuzz. New code should use `FUZZING_ENGINE_CXXFLAGS` instead.
 
 While files layout is fixed within a container, the environment variables are
 provided to be able to write retargetable scripts.
@@ -191,6 +191,7 @@ These flags are provided in the following environment variables:
 | -------------          | --------
 | `$CC`, `$CXX`, `$CCC`  | The C and C++ compiler binaries.
 | `$CFLAGS`, `$CXXFLAGS` | C and C++ compiler flags.
+| `$FUZZING_ENGINE_CXXFLAGS` | C++ compiler flags for linking the fuzz target against the fuzzing engine.
 
 You *must* use `$CXX` as a linker, even if your project is written in pure C.
 
